@@ -1,0 +1,32 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "hhh",
+            "database": "zahra",
+            "username": "root",
+            "password": "zahrashahd2020",
+            "connectionTimeout": 60
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 8889,
+            "driver": "MySQL",
+            "name": "zahra",
+            "database": "Library",
+            "username": "root",
+            "password": "zahra",
+            "connectionTimeout": 50
+        }
+    ]
+}
