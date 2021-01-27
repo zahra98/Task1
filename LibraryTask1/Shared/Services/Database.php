@@ -1,36 +1,19 @@
 
 <?php
-class Connection {
-    function __construct() {  
-      $db_host = 'localhost';
-      $db_user = 'root';
-      $db_password = 'zahra';
-      $db_db = 'Library';
-      $db_port = 8889;
+function OpenCon()
+{
+$dbhost = "localhost";
+$dbuser = "root";
+$dbpass = "zahra";
+$db = "Library";
+$conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
+echo "Connected Successfully";
+return $conn;
+}
 
-      $mysqli = new mysqli(
-      $db_host,
-      $db_user,
-      $db_password,
-      $db_db
-      );
-    
-      if ($mysqli->connect_error) {
-      echo 'Errno: '.$mysqli->connect_errno;
-      echo '<br>';
-      echo 'Error: '.$mysqli->connect_error;
-      exit();
-    }
-
-    echo 'Success: A proper connection to MySQL was made.';
-    echo '<br>';
-    echo 'Host information: '.$mysqli->host_info;
-    echo '<br>';
-    echo 'Protocol version: '.$mysqli->protocol_version;
-
-    $mysqli->close();
-    }
-
+function CloseCon($conn)
+{
+$conn -> close();
 }
 ?>
 
