@@ -50,6 +50,7 @@ CloseCon($conn);
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="e/TrainingTasks/MyTask1/LibraryTask1/Shared/View/LogIn.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
  table.mytable {
   font-family: arial, sans-serif;
