@@ -1,46 +1,3 @@
-<?php
-
-include 'Database.php';
-$conn = OpenCon();
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = test_input($_POST["email"]);
-    $password = test_input($_POST["password"]);
-$escaped_username = mysqli_real_escape_string( $con, $_POST['username'] );
-$escaped_email = mysqli_real_escape_string( $con, $_POST['email'] );
-
-    $sql = "SELECT * FROM users where user_email = '$email' ";
-    if($result = mysqli_query($conn, $sql)){
-        if(mysqli_num_rows($result) > 0){
-
-            while($row = mysqli_fetch_array($result)){
-                $DBPassword = $row['user_password'];
-                $id = $row['user_id'];
-             $verify = password_verify($password, $DBPassword);
-             if ($verify) {
-                 session_start();
-                 $_SESSION['user_id'] = $id;
-             }
-             else{
-                 echo $DBPassword;
-             }
-            }
-        } else{
-            echo "No records matching your query were foundddd.";
-        }
-    } else{
-        echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
-    }
-
-}
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-  }
-CloseCon($conn);
-
-?>
 
 <!DOCTYPE html>
 <html>
@@ -49,7 +6,7 @@ CloseCon($conn);
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="e/TrainingTasks/MyTask1/LibraryTask1/Shared/View/LogIn.css">
+    <link rel="stylesheet" href="/Applications/MAMP/htdocs/TrainingTasks/MyTask1/LibraryTask1/Shared/View/LogIn.css">
     <style>
  table.mytable {
   font-family: arial, sans-serif;
@@ -92,17 +49,9 @@ $conn = OpenCon();
  $sql = "SELECT * FROM users where user_id = '$user_id2' ";
  if($result = mysqli_query($conn, $sql)){
      if(mysqli_num_rows($result) > 0){
-$i = "1918510529IMG_20190730_233423_786.jpg";
-          while($row = mysqli_fetch_array($result)){
-            $image = $row['user_image'];
-            echo "<table>";
-            echo "<tr>";
-            echo "<th>";
-            echo "<img src='".$image."' style='width:200px;height:200px; '  >";
-            //echo $image;
-            echo "</th >";
-            echo "<th >";
-             echo "<table  class = 'table.mytable' >";
+         echo "<table  class = 'table.mytable' >";
+         while($row = mysqli_fetch_array($result)){
+           
              echo "<tr>";
              echo "<th style='border=1px solid black' >". "Name". "</th>";
              echo "<th style='border=1px solid black' >". $row['user_name']. "</th>";
@@ -121,14 +70,11 @@ $i = "1918510529IMG_20190730_233423_786.jpg";
              echo "</tr>";
             
          }
-          echo "</table>";
-         echo "</th >";
-         echo "</tr>";
          echo "</table>";
          mysqli_free_result($result);
      }
       else{
-         echo "No records matching your query were founddd.";
+         echo "No records matching your query were found.";
       }
 } 
  else{
