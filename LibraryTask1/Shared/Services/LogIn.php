@@ -49,13 +49,27 @@ CloseCon($conn);
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="e/TrainingTasks/MyTask1/LibraryTask1/Shared/View/LogIn.css">
+    <link rel="stylesheet" href="/TrainingTasks/MyTask1/LibraryTask1/Shared/View/LogIn.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
- table.mytable {
+  .img{
+   width: 190px;
+   height: 200px
+        }
+ .center {
+  margin: auto;
+  width: 60%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+ }
+ table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 300px;
+  margin: auto;
+  width: 90%;
+  border: 3px ;
+  padding: 15px;
 }
 
 td, th {
@@ -97,10 +111,11 @@ $conn = OpenCon();
             echo "<table>";
             echo "<tr>";
             echo "<th>";
-            echo "<img src='".$image."' style='width:200px;height:200px; '  >";
+            echo "<img src='".$image."' width = '100%'  >";
             echo "</th >";
-            echo "<th >";
-            echo "<table  class = 'table.mytable' >";
+            echo "<tr >";
+
+            echo "<table   >";
             echo "<tr>";
             echo "<th style='border=1px solid black' >". "Name". "</th>";
             echo "<th style='border=1px solid black' >". $row['user_name']. "</th>";
@@ -120,7 +135,7 @@ $conn = OpenCon();
             
          }
            echo "</table>";
-           echo "</th >";
+           echo "</tr >";
            echo "</tr>";
            echo "</table>";
         mysqli_free_result($result);
@@ -140,7 +155,7 @@ $conn = OpenCon();
 </h6>
 </div>
             
-<div>
+<div style="text-align:center;"  class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto" >
 <form action="upload.php" method="post" enctype="multipart/form-data">
   Select image to upload:
   <input type="file" name="fileToUpload" id="fileToUpload">
