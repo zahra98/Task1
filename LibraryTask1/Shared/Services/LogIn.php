@@ -5,23 +5,20 @@ $conn = OpenCon();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = test_input($_POST["email"]);
     $password = test_input($_POST["password"]);
-$escaped_username = mysqli_real_escape_string( $con, $_POST['username'] );
-$escaped_email = mysqli_real_escape_string( $con, $_POST['email'] );
-
     $sql = "SELECT * FROM users where user_email = '$email' ";
     if($result = mysqli_query($conn, $sql)){
         if(mysqli_num_rows($result) > 0){
 
             while($row = mysqli_fetch_array($result)){
-                $DBPassword = $row['user_password'];
-                $id = $row['user_id'];
+             $DBPassword = $row['user_password'];
+             $id = $row['user_id'];
              $verify = password_verify($password, $DBPassword);
              if ($verify) {
                  session_start();
                  $_SESSION['user_id'] = $id;
              }
              else{
-                 echo $DBPassword;
+                 echo "No match";
              }
             }
         } else{
@@ -41,7 +38,7 @@ function test_input($data) {
 CloseCon($conn);
 
 ?>
-
+<!-- this is the profile page -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,48 +89,46 @@ $conn = OpenCon();
  $sql = "SELECT * FROM users where user_id = '$user_id2' ";
  if($result = mysqli_query($conn, $sql)){
      if(mysqli_num_rows($result) > 0){
-$i = "1918510529IMG_20190730_233423_786.jpg";
           while($row = mysqli_fetch_array($result)){
             $image = $row['user_image'];
             echo "<table>";
             echo "<tr>";
             echo "<th>";
             echo "<img src='".$image."' style='width:200px;height:200px; '  >";
-            //echo $image;
             echo "</th >";
             echo "<th >";
-             echo "<table  class = 'table.mytable' >";
-             echo "<tr>";
-             echo "<th style='border=1px solid black' >". "Name". "</th>";
-             echo "<th style='border=1px solid black' >". $row['user_name']. "</th>";
-             echo "</tr>";
-             echo "<tr>";
-             echo "<th style='border=1px solid black' >". "Phone". "</th>";
-             echo "<th style='border=1px solid black' >" . $row['user_phone'] . "</th>";
-             echo "</tr>";
-             echo "<tr>";
-             echo "<th style='border=1px solid black' >". "Email". "</th>";
-             echo "<th style='border=1px solid black' >" . $row['user_email'] . "</th>";
-             echo "</tr>";
-             echo "<tr>";
-             echo "<th style='border=1px solid black' >". "Address". "</th>";
-             echo "<th style='border=1px solid black'>" . $row['user_address'] . "</th>";
-             echo "</tr>";
+            echo "<table  class = 'table.mytable' >";
+            echo "<tr>";
+            echo "<th style='border=1px solid black' >". "Name". "</th>";
+            echo "<th style='border=1px solid black' >". $row['user_name']. "</th>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<th style='border=1px solid black' >". "Phone". "</th>";
+            echo "<th style='border=1px solid black' >" . $row['user_phone'] . "</th>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<th style='border=1px solid black' >". "Email". "</th>";
+            echo "<th style='border=1px solid black' >" . $row['user_email'] . "</th>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<th style='border=1px solid black' >". "Address". "</th>";
+            echo "<th style='border=1px solid black'>" . $row['user_address'] . "</th>";
+            echo "</tr>";
             
          }
-          echo "</table>";
-         echo "</th >";
-         echo "</tr>";
-         echo "</table>";
-         mysqli_free_result($result);
+           echo "</table>";
+           echo "</th >";
+           echo "</tr>";
+           echo "</table>";
+        mysqli_free_result($result);
      }
       else{
          echo "No records matching your query were founddd.";
       }
-} 
- else{
+ } 
+  else{
      echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
- }
+  }
   
  // Close connection
  mysqli_close($conn);
