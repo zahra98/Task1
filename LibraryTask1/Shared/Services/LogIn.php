@@ -1,7 +1,7 @@
 <?php
-
 include 'Database.php';
 $conn = OpenCon();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = test_input($_POST["email"]);
     $password = test_input($_POST["password"]);
@@ -38,6 +38,9 @@ function test_input($data) {
 CloseCon($conn);
 
 ?>
+
+
+
 <!-- this is the profile page -->
 <!DOCTYPE html>
 <html>
@@ -83,7 +86,6 @@ tr:nth-child(even) {
                         <h6 class="mb-0 mr-4 mt-2">
 <?php 
 $conn = OpenCon();
- //echo 'You are visitor number ' . $_SESSION['user_id'];
  session_start();
  $user_id2 = $_SESSION['user_id'];
  $sql = "SELECT * FROM users where user_id = '$user_id2' ";
@@ -135,7 +137,7 @@ $conn = OpenCon();
 ?>
 
 </h6>
-                    </div>
+</div>
             
 <div>
 <form action="upload.php" method="post" enctype="multipart/form-data">
@@ -148,9 +150,6 @@ $conn = OpenCon();
          
          </div>                   
           
-            <div class="bg-blue py-4">
-             
-            </div>
         </div>
     </div>
 

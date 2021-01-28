@@ -43,7 +43,6 @@ tr:nth-child(even) {
                         <h6 class="mb-0 mr-4 mt-2">
 <?php 
 $conn = OpenCon();
- //echo 'You are visitor number ' . $_SESSION['user_id'];
  session_start();
  $user_id2 = $_SESSION['user_id'];
  $sql = "SELECT * FROM users where user_id = '$user_id2' ";
