@@ -2,7 +2,6 @@
 include 'Database.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require 'vendor/autoload.php';
 $conn = OpenCon();
 $name = $email = $phone = $address = $passsword = "";
 
@@ -26,28 +25,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 else{
 $token = md5(time().$email);
+echo "done1";
 $sql = "INSERT INTO users (user_name, user_email, user_phone,user_address,user_password,is_admin,token)
 VALUES ('$name' , '$email', '$phone','$address','$encrypted_password','0','$token')";
-
+ echo "done";
 if ($conn->query($sql) === TRUE) {
+  require '/Applications/MAMP/htdocs/TrainingTasks/MyTask1/LibraryTask1/vendor/autoload.php';
+  require_once '/Applications/MAMP/htdocs/TrainingTasks/MyTask1/LibraryTask1/vendor/phpmailer/phpmailer/src/Exception.php';
+  require_once '/Applications/MAMP/htdocs/TrainingTasks/MyTask1/LibraryTask1/vendor/phpmailer/phpmailer/src/SMTP.php';
+  require_once '/Applications/MAMP/htdocs/TrainingTasks/MyTask1/LibraryTask1/vendor/phpmailer/phpmailer/src/PHPMailer.php';
   echo "OK";
+  echo "OK";
+  $r = "zahraabuzahra4@gmail.com";
   $mail = new PHPMailer(true);
   echo "OK";
   try {
-    $mail->setFrom('zainaaaa98@gmail.com', 'User Registration');
+    $mail->isSMTP();                                            // Send using SMTP
+    $mail->Host = "ssl://smtp.gmail.com"; 
+    //$mail->Host       = 'smtp.example.com';                    // Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+    $mail->Username   = 'zahraabuzahra4@gmail.com';                     // SMTP username
+    $mail->Password   = 'zahra0599527348';                               // SMTP password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+    $mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+    $mail->setFrom('zahraabuzahra4@gmail.com', 'User Registration');
+ 
     $mail->addAddress('zahraabuzahra4@gmail.com');
-
+   
     $mail->isHTML(true);
+  
     $mail->Subject = 'Confirm email';
+   
     $mail->Body = 'Activate your email:
-    <a href="http://localhost:8888/TrainingTasks/MyTask1/LibraryTask1/Shared/Services/verify-email.php?email=' . $email . '&token=' . $token . '">Confirm email</a>';
+    <a href="http://localhost:8888/TrainingTasks/MyTask1/LibraryTask1/Shared/Services/verify-email.php?email=' . $r . '&token=' . $token . '">Confirm email</a>';
 
-    $mail->send();
+   if( $mail->send()){
     $output = 'Message sent!';
+   }
+   else{
+    $output = 'something went rong';
+   }
+    
 } catch (Exception $e) {
+ 
     $output = $mail->ErrorInfo;
 }
-
+echo $output ;
 }
 else {
     echo "Error: " . $sql . "<br>" . $conn->error;

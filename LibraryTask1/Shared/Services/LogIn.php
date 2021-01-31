@@ -103,10 +103,18 @@ tr:nth-child(even) {
 $conn = OpenCon();
  session_start();
  $user_id2 = $_SESSION['user_id'];
+
  $sql = "SELECT * FROM users where user_id = '$user_id2' ";
  if($result = mysqli_query($conn, $sql)){
      if(mysqli_num_rows($result) > 0){
           while($row = mysqli_fetch_array($result)){
+            $activate = $row['confirmation'];
+            if($activate == 1){
+                echo "your account is activated";
+            }
+            else if ($activate == 0){
+                echo "your account is not activated";
+            }
             $image = $row['user_image'];
             echo "<table>";
             echo "<tr>";
