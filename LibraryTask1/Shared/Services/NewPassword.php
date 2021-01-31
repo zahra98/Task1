@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
                          header("Location: http://localhost:8888/TrainingTasks/MyTask1/LibraryTask1/Shared/View/LogIn.html");
                          exit();
-                        echo  "done";
+                       
                          } else {
         
                         echo "Error: " . $sql . "<br>" . $conn->error;

@@ -17,16 +17,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 else{
 $token = md5(time().$email);
-echo "done1";
   require '/Applications/MAMP/htdocs/TrainingTasks/MyTask1/LibraryTask1/vendor/autoload.php';
   require_once '/Applications/MAMP/htdocs/TrainingTasks/MyTask1/LibraryTask1/vendor/phpmailer/phpmailer/src/Exception.php';
   require_once '/Applications/MAMP/htdocs/TrainingTasks/MyTask1/LibraryTask1/vendor/phpmailer/phpmailer/src/SMTP.php';
   require_once '/Applications/MAMP/htdocs/TrainingTasks/MyTask1/LibraryTask1/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-  echo "OK";
-  echo "OK";
   $r = "zahraabuzahra4@gmail.com";
   $mail = new PHPMailer(true);
-  echo "OK";
   try {
     $mail->isSMTP();                                            // Send using SMTP
     $mail->Host = "ssl://smtp.gmail.com"; 
@@ -47,7 +43,7 @@ echo "done1";
     <a href="http://localhost:8888/TrainingTasks/MyTask1/LibraryTask1/Shared/Services/NewPassword.php?email=' . $email . '"> Reset Password</a>';
 
    if( $mail->send()){
-    $output = 'Message sent!';
+    $output = 'check your Email and follow the Reset link!';
    }
    else{
     $output = 'something went rong';
@@ -58,9 +54,6 @@ echo "done1";
     $output = $mail->ErrorInfo;
 }
 echo $output ;
-
-
-
 }
 }
 //validate the form data

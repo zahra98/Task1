@@ -43,18 +43,13 @@ if ($conn->query($sql) === TRUE) {
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
     $mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
     $mail->setFrom('zahraabuzahra4@gmail.com', 'User Registration');
- 
     $mail->addAddress('zainaaaa98@gmail.com');
-   
     $mail->isHTML(true);
-  
     $mail->Subject = 'Confirm email';
-   
     $mail->Body = 'Activate your email:
     <a href="http://localhost:8888/TrainingTasks/MyTask1/LibraryTask1/Shared/Services/verify-email.php?email=' . $r . '&token=' . $token . '">Confirm email</a>';
-
    if( $mail->send()){
-    $output = 'Message sent!';
+    $output = 'Check your Email anf follow the Confirmation link!';
    }
    else{
     $output = 'something went rong';
