@@ -3,8 +3,6 @@ include 'Database.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 $conn = OpenCon();
-$name = $email = $phone = $address = $passsword = "";
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
  
   $email = test_input($_POST["email"]);
@@ -37,16 +35,16 @@ echo "done1";
     $mail->Password   = 'zahra0599527348';                               // SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
     $mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
-    $mail->setFrom('zahraabuzahra4@gmail.com', 'User Registration');
+    $mail->setFrom('zahraabuzahra4@gmail.com', 'Reset Password');
  
-    $mail->addAddress('zahraabuzahra4@gmail.com');
+    $mail->addAddress($email);
    
     $mail->isHTML(true);
   
     $mail->Subject = 'Confirm email';
    
     $mail->Body = 'Activate your email:
-    <a href="http://localhost:8888/TrainingTasks/MyTask1/LibraryTask1/Shared/Services/verify-email.php?email=' . $r . '&token=' . $token . '">Confirm email</a>';
+    <a href="http://localhost:8888/TrainingTasks/MyTask1/LibraryTask1/Shared/Services/NewPassword.php?email=' . $email . '">Confirm email</a>';
 
    if( $mail->send()){
     $output = 'Message sent!';

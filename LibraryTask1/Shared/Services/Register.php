@@ -44,7 +44,7 @@ if ($conn->query($sql) === TRUE) {
     $mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
     $mail->setFrom('zahraabuzahra4@gmail.com', 'User Registration');
  
-    $mail->addAddress('zahraabuzahra4@gmail.com');
+    $mail->addAddress('zainaaaa98@gmail.com');
    
     $mail->isHTML(true);
   
