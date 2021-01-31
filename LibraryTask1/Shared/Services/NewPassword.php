@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                          exit();
                         echo  "done";
                          } else {
-           // echo  $email;
+        
                         echo "Error: " . $sql . "<br>" . $conn->error;
                          }
                         }
@@ -50,18 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else{
                 echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
             }
-
-    //         $sql = "UPDATE users set confirmation = '1'  WHERE user_email = '$email' ";
-    //      if ($conn->query($sql) === TRUE) {
-            
-    //    header("Location: http://localhost:8888/TrainingTasks/MyTask1/LibraryTask1/Shared/View/LogIn.html");
-    //    exit();
-    //        echo  "done";
-    //      } else {
-    //        // echo  $email;
-    //        echo "Error: " . $sql . "<br>" . $conn->error;
-    //        }
-     // Close connection
        mysqli_close($conn);
         }
     }

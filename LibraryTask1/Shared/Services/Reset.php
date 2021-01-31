@@ -43,8 +43,8 @@ echo "done1";
   
     $mail->Subject = 'Confirm email';
    
-    $mail->Body = 'Activate your email:
-    <a href="http://localhost:8888/TrainingTasks/MyTask1/LibraryTask1/Shared/Services/NewPassword.php?email=' . $email . '">Confirm email</a>';
+    $mail->Body = 'Reset your password:
+    <a href="http://localhost:8888/TrainingTasks/MyTask1/LibraryTask1/Shared/Services/NewPassword.php?email=' . $email . '"> Reset Password</a>';
 
    if( $mail->send()){
     $output = 'Message sent!';
