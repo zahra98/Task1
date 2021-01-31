@@ -1,5 +1,8 @@
 <?php
 include 'Database.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'vendor/autoload.php';
 $conn = OpenCon();
 $name = $email = $phone = $address = $passsword = "";
 
@@ -22,15 +25,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
 else{
-$sql = "INSERT INTO users (user_name, user_email, user_phone,user_address,user_password,is_admin)
-VALUES ('$name' , '$email', '$phone','$address','$encrypted_password','0')";
+$token = md5(time().$email);
+$sql = "INSERT INTO users (user_name, user_email, user_phone,user_address,user_password,is_admin,token)
+VALUES ('$name' , '$email', '$phone','$address','$encrypted_password','0','$token')";
 
 if ($conn->query($sql) === TRUE) {
-header("Location: http://localhost:8888/TrainingTasks/MyTask1/LibraryTask1/Shared/View/LogIn.html");
-exit();
-  } else {
+  echo "OK";
+  $mail = new PHPMailer(true);
+  echo "OK";
+  try {
+    $mail->setFrom('zainaaaa98@gmail.com', 'User Registration');
+    $mail->addAddress('zahraabuzahra4@gmail.com');
+
+    $mail->isHTML(true);
+    $mail->Subject = 'Confirm email';
+    $mail->Body = 'Activate your email:
+    <a href="http://localhost:8888/TrainingTasks/MyTask1/LibraryTask1/Shared/Services/verify-email.php?email=' . $email . '&token=' . $token . '">Confirm email</a>';
+
+    $mail->send();
+    $output = 'Message sent!';
+} catch (Exception $e) {
+    $output = $mail->ErrorInfo;
+}
+
+}
+else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
+//   $to = $reciverEmail;
+//   $subject = " Cinfermation Email"; 
+  
+//   $message = "<a href = 'http://localhost:8888/TrainingTasks/MyTask1/LibraryTask1/Shared/Services/verify-email.php?tkey=$token'> Regester account </a> ";
+//   $header = "";
+
+//  header("Location: http://localhost:8888/TrainingTasks/MyTask1/LibraryTask1/Shared/View/LogIn.html");
+//  exit();
+
 }
 }
 //validate the form data
