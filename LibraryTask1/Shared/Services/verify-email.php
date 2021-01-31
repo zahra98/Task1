@@ -30,15 +30,6 @@ if($_GET){
        }
  // Close connection
    mysqli_close($conn);
-
-    //     if($select->fetchColumn() > 0){
-    //         $update = $conn->prepare("UPDATE users SET confirmation=1, token='' WHERE user_email=:email");
-    //         $update->execute(array(
-    //             'email' => $email
-    //         ));
-    //         echo 'succes';
-    //     }
-    // }
     }
 }
 ?>
