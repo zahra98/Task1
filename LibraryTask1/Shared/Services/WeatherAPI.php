@@ -44,6 +44,7 @@
                             <?php
                              if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                  $long = $_POST["long"];
+                                
                                  $lat = $_POST["lat"];
                                  function buildBaseString($baseURI, $method, $params) {
                                     $r = array();

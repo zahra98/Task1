@@ -1,5 +1,6 @@
 
 <?php
+//database connection
 function OpenCon()
 {
 $dbhost = "localhost";
