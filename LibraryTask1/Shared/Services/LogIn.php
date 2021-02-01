@@ -102,6 +102,7 @@ tr:nth-child(even) {
                     <div class="row mb-4 px-3">
                         <h6 class="mb-0 mr-4 mt-2">
 <?php 
+//j
 $conn = OpenCon();
  session_start();
  $user_id2 = $_SESSION['user_id'];
